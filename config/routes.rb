@@ -1,6 +1,8 @@
 Webl::Application.routes.draw do
 	
-	root :to => 'sessions#new'
+	root :to => 'static#about'
+	match '/about' => 'static#about'
+
 	resources :sessions, :only => [:new, :create, :destroy]
 	
 	
