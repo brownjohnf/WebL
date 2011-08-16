@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  email: MyString
+  password_digest: MyString
+  cookie_hash: MyString
+  roles_mask: 1
+
+two:
+  name: MyString
+  email: MyString
+  password_digest: MyString
+  cookie_hash: MyString
+  roles_mask: 1

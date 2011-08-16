@@ -6,3 +6,6 @@ tmp/
 *~
 webrat.log
 .tmproj
+config/database.yml
+config/app_config.yml
+Gemfile.lock
