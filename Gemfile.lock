@@ -43,6 +43,7 @@ GEM
     autotest-rails-pure (4.1.2)
     bcrypt-ruby (2.1.4)
     builder (3.0.0)
+    cancan (1.6.5)
     coffee-rails (3.1.0.rc.5)
       actionpack (~> 3.1.0.rc1)
       coffee-script (>= 2.2.0)
@@ -157,6 +158,7 @@ DEPENDENCIES
   autotest-fsevent
   autotest-growl
   autotest-rails-pure
+  cancan
   coffee-rails (~> 3.1.0.rc)
   factory_girl_rails (= 1.0)
   faker

@@ -39,9 +39,9 @@ Spork.prefork do
 	end
 	
 	# My own functions as designed to help a little
-	#def test_sign_in(user)
-	#  controller.sign_in(user)
-	#end
+	def sign_in(user)
+	  controller.sign_in(user)
+	end
   #
 	#def integration_sign_in(user)
 	#  visit signin_path

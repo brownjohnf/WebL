@@ -1,4 +1,23 @@
-%h1 About
+-title "About"
 
-Basic weblog based on Rails 3.1 with roles for authors next to admins. 
-Currently (very) unfinished
+%p 
+	Basic weblog based on Rails 3.1 with roles for authors next to admins. 
+	Currently (very) unfinished.
+	
+%h1 CanCan:
+.box
+	I can:
+	%ul
+		%li= "read users" if can? :read, User 
+		%li= "edit users" if can? :edit, User
+	-if signed_in?
+		My roles are:
+		%ul
+			- current_user.roles.each do |role|
+				%li= role
+		
+		
+		
+	
+
+
