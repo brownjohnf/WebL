@@ -13,10 +13,12 @@ class User < ActiveRecord::Base
 												:length			=> { :within => 6..60 },
 												:uniqueness => { :case_sensitive => false },
 												:format			=> { :with => email_regex }
-	validates :password, 	:presence	=> true,
-												:on				=> :create
+	validates :password, 	:presence		=> true,
+												:on					=> :create
 												
 	before_save :generate_salt
+	
+	has_many :posts
 	
   def self.authenticate_with_cookie(id, cookie_salt)
 		user = find_by_id(id)

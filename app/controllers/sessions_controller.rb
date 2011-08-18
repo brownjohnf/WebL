@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController  
+	skip_authorization_check
+	
   def new  
   end  
   
@@ -6,7 +8,7 @@ class SessionsController < ApplicationController
 	  user = User.find_by_name(params[:session][:name])
 	  if user && user.authenticate(params[:session][:password])  
 	    sign_in user
-			flash[:succes] = "Logged in!"
+			flash[:success] = "Logged in!"
 	    redirect_back_or root_path
 	  else  
 	    flash.now[:alert] = "Invalid name or password"  

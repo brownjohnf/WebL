@@ -1,3 +1,6 @@
+require 'bcrypt'
+BCrypt::Engine::DEFAULT_COST = 1
+
 Webl::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 

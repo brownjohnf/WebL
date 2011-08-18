@@ -1,11 +1,15 @@
 Webl::Application.routes.draw do
 	
-	root :to => 'static#about'
+	root :to => 'posts#index'
 	match '/about' => 'static#about'
 	match '/signout' => 'sessions#destroy', :as => :sign_out
+	match '/login' => 'sessions#new', :as => :sign_in
 
 	resources :sessions, 	:only => [:new, :create, :destroy]
-	resources :users, 		:only => [:show, :new, :create, :edit, :update]
+	resources :users, 		:only => [:show, :new, :create, :edit, :update] do
+		resources :posts, :only => :index
+	end
+  resources :posts
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

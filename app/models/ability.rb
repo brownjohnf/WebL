@@ -5,10 +5,9 @@ class Ability
 		@user = user
 		user ||= User.new # guest user (not logged in)
 
-		#can :read, Post
+		can :read, Post, :published => true
 		can :show, User
-		guest_roles if @user.nil?
-		registered_roles unless @user.nil?		
+		@user.nil? ? guest_roles : registered_roles
 		author_roles if user.has_role? 'author'
 		admin_roles if user.has_role? 'admin'
 		banned_roles if user.has_role? 'banned'
@@ -30,10 +29,11 @@ class Ability
 	end
 	
 	def author_roles
-		#can :create, Post
-		#can [:update, :destroy], Post do |post|
-		#	post.try(:user) == user
-		#end
+		can :create, Post
+		can :read, Post, :published => false, :user_id => @user.id
+		can [:update, :destroy], Post do |post|
+			post.try(:user) == @user
+		end
 	end
 	
 	def admin_roles

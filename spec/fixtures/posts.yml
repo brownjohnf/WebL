@@ -1,0 +1,20 @@
+one:
+  title: MyString
+  content: MyText
+  publication_date: 2011-08-17 13:53:11
+  published: true
+  user_id: 1
+
+two:
+  title: MyString
+  content: MyText
+  publication_date: 2011-08-17 13:53:11
+  published: true
+  user_id: 1
+
+three:
+  title: MyString
+  content: MyText
+  publication_date: 2011-08-17 13:53:11
+  published: false
+  user_id: 1
