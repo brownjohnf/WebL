@@ -1,0 +1,18 @@
+- title "Comment"
+
+%p
+  %strong User:
+  = @comment.user_id
+%p
+  %strong Post:
+  = @comment.post_id
+%p
+  %strong Content:
+  = @comment.content
+
+%p
+  = link_to "Edit", edit_post_comment_path(@post,@comment)
+  |
+  = link_to "Destroy", post_comment_path(@post,@comment), :confirm => 'Are you sure?', :method => :delete
+  |
+  = link_to "View All", post_comments_path

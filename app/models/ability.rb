@@ -18,10 +18,10 @@ class Ability
 	end
 	
 	def registered_roles
-		#can :create, Comment
-		#can :update, Comment do |comment|  
-		#	comment.try(:user) == user  
-		#end
+		can :create, Comment, :user_id => @user.id
+		can :update, Comment do |comment|  
+			comment.try(:user) == user  
+		end
 		can :read, User
 		can :update, User do |user|
 			user == @user
@@ -34,6 +34,7 @@ class Ability
 		can [:update, :destroy], Post do |post|
 			post.try(:user) == @user
 		end
+		can :manage, Comment, :post => { :user_id => @user.id }
 	end
 	
 	def admin_roles
