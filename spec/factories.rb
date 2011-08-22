@@ -12,3 +12,8 @@ end
 Factory.sequence :name do |n|
   "person-#{n}"
 end
+
+Factory.define :post do |post|
+	post.title 				"Dummy Title"
+	post.content			"Dummy Content"
+end

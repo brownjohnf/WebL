@@ -19,6 +19,11 @@ class User < ActiveRecord::Base
 	before_save :generate_salt
 	
 	has_many :posts
+	has_many :comments
+	
+	def to_param
+		"#{id}-#{name.parameterize}"
+	end
 	
   def self.authenticate_with_cookie(id, cookie_salt)
 		user = find_by_id(id)

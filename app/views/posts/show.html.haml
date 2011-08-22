@@ -17,13 +17,25 @@
 	= @post.published 
 
 %p
-	%strong User:
-	= @post.user_id 
+	%strong Author:
+	= @post.user.name.humanize 
 
+- if can? :read, Comment
+	%p
+		%strong Comments:
+		- for comment in @post.comments.includes(:user).order("created_at asc") do
+			=render comment
+
+- if can? :create, Comment
+	%p
+		%strong New Comment:
+		= render 'comments/form'
 
 %p
-	= link_to "Edit", edit_post_path(@post) 
-	| 
-	= link_to "Destroy", @post, :confirm => 'Are you sure?', :method => :delete 
-	| 
+	-if can? :edit, @post
+		= link_to "Edit", edit_post_path(@post) 
+		| 
+	-if can? :destroy, @post	
+		= link_to "Destroy", @post, :confirm => 'Are you sure?', :method => :delete 
+		| 
 	= link_to "View All", posts_path 

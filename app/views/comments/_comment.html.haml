@@ -1,0 +1,11 @@
+%hr
+%p
+	%strong= "#{comment.user.name.humanize}: "
+	= comment.content
+	-if (can? :edit, comment) || (can? :destroy, comment)
+		%br
+		%span.quiet
+			-if can? :edit, comment
+				= link_to "edit", edit_post_comment_path(@post,comment)
+			-if can? :destroy, comment
+				= link_to "destroy", post_comment_path(@post,comment), :confirm => 'Are you sure?', :method => :delete

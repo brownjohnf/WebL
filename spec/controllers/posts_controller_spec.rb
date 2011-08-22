@@ -34,8 +34,9 @@ describe PostsController do
 
 	  it "create action should redirect when model is valid" do
 	    Post.any_instance.stubs(:valid?).returns(true)
+			Post.any_instance.stubs(:to_param).returns("1")
 	    post :create
-	    response.should redirect_to(post_url(assigns[:post]))
+	    response.should redirect_to(post_url(1))
 	  end
 
 	  it "edit action should render edit template" do
@@ -76,7 +77,8 @@ describe PostsController do
 	  end
 
 	  it "show action should render show template" do
-	    get :show, :id => Post.first
+			Post.first.published = true
+	    get :show, :id => Post.first.id
 	    response.should render_template(:show)
 	  end
 
@@ -148,6 +150,8 @@ describe PostsController do
 
 	  it "create action should redirect when model is valid" do
 	    Post.any_instance.stubs(:valid?).returns(true)
+			Post.any_instance.stubs(:title).returns("test")
+			Post.any_instance.stubs(:id).returns(1)
 	    post :create
 	    response.should redirect_to(post_url(assigns[:post]))
 	  end

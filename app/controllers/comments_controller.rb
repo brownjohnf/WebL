@@ -15,7 +15,8 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to @post, :notice => "Successfully created comment."
     else
-      render :action => 'new'
+      flash[:error] = "Comment could not be saved"
+			redirect_to @post
     end
   end
 

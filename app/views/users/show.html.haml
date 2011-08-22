@@ -1,5 +1,11 @@
-- title @user.name.humanize
+- title @user.name.humanize, false
 
 %h2 
-	profile page for
+	Profile page for
 	= @user.name.humanize
+
+%h2= "Recent comments by #{@user.name.humanize}"
+
+- for comment in @user.comments.order(:created_at).limit(10)
+	%hr
+	%p= comment.content

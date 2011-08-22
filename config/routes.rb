@@ -12,7 +12,11 @@ Webl::Application.routes.draw do
 		resources :posts, :only => :index
 	end
   resources :posts do
-	  resources :comments
+	  resources :comments, :except => [:index, :show, :new]
+	end
+	
+	namespace :admin do
+		resources :posts, :only => [:index, :destroy]
 	end
 
   # The priority is based upon order of creation:

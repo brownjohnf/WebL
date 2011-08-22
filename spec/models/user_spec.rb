@@ -67,6 +67,18 @@ describe User do
 		  User.new(@attr.merge(:password => "", :password_confirmation => "")).should_not be_valid
 		end
 	end
+
+	it "should have a logical url" do
+    @attr = {
+      :name => "George Clooney", 
+      :email => "g.clooney@example.com", 
+      :password => "secret",
+      :password_confirmation => "secret"
+      }
+		@user = User.new(@attr)
+		@user.id = 105
+		@user.to_param.should == "#{@user.id}-#{@user.name.parameterize}"
+	end
 end
 
 
