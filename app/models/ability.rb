@@ -5,7 +5,7 @@ class Ability
 		@user = user
 		user ||= User.new # guest user (not logged in)
 
-		can :read, Post, :published => true
+		can [:read, :search], Post, :published => true
 		can :show, User
 		@user.nil? ? guest_roles : registered_roles
 		author_roles if user.has_role? 'author'

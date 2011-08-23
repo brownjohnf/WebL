@@ -41,4 +41,12 @@ class Admin::UsersController < Admin::AdminController
 		redirect_to admin_users_path
   end
 
+	def ban
+		@user = User.find(params[:id])
+		@user.roles = ['banned']
+		@user.save!
+		flash[:notice] = "User #{@user.name} has been banned."
+		redirect_to :back
+	end
+
 end

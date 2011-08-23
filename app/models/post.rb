@@ -8,6 +8,9 @@ class Post < ActiveRecord::Base
 	
 	belongs_to :user
 	
+	default_scope order('publication_date DESC')
+	scope :published, where(:published => true)
+	
 	has_many :comments, :dependent => :destroy
 	
 	def to_param

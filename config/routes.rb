@@ -1,7 +1,9 @@
 Webl::Application.routes.draw do
 	
 	namespace :admin do
-		resources :users
+		resources :users do
+			put 'ban', :on => :member
+		end
 		resources :posts, :only => [:index, :destroy]
 		resources :comments, :only => [:index, :edit, :update, :destroy]
 	end
@@ -17,6 +19,7 @@ Webl::Application.routes.draw do
 	end
   resources :posts do
 	  resources :comments, :except => [:index, :show, :new]
+		get 'search', :on => :collection
 	end
 	
 

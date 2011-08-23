@@ -3,7 +3,20 @@ class PostsController < ApplicationController
 	load_and_authorize_resource
 
   def index
+		if params[:user_id]
+			@posts = Post.accessible_by(current_ability).where(:user_id => params[:user_id])
+		else
+			@posts = Post.accessible_by(current_ability).published
+		end
   end
+
+	def search
+		if params[:q]
+			@posts = Post.accessible_by(current_ability).where('title LIKE :title', :title => "%#{params[:q]}%")
+		else
+			@posts = Post.accessible_by(current_ability)
+		end
+	end
 
   def show
   end
