@@ -18,7 +18,7 @@ Webl::Application.routes.draw do
 		resources :posts, :only => :index
 	end
   resources :posts do
-	  resources :comments, :except => [:index, :show, :new]
+		resources :comments, :except => [:index, :show, :new]
 		get 'search', :on => :collection
 	end
 	
