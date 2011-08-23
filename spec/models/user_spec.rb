@@ -1,26 +1,3 @@
-# == Schema Information
-#
-# Table name: users
-#
-#  id                  :integer         not null, primary key
-#  username            :string(255)
-#  password_digest     :string(255)
-#  first_name          :string(255)
-#  last_name           :string(255)
-#  email               :string(255)
-#  salt                :string(255)
-#  admin               :boolean         default(FALSE)
-#  created_at          :datetime
-#  updated_at          :datetime
-#  avatar_file_name    :string(255)
-#  avatar_content_type :string(255)
-#  avatar_file_size    :integer
-#  avatar_updated_at   :datetime
-#  ivector             :string(255)
-#  gcal_username       :string(255)
-#  gcal_password       :string(255)
-#
-
 require 'spec_helper'
 
 describe User do
@@ -70,8 +47,8 @@ describe User do
 
 	it "should have a logical url" do
     @attr = {
-      :name => "George Clooney", 
-      :email => "g.clooney@example.com", 
+      :name => "EXward Ampleuser", 
+      :email => "e.x.ampleuser@example.com", 
       :password => "secret",
       :password_confirmation => "secret"
       }
