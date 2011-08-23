@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe PostsController do
-  fixtures :posts
+  fixtures :all
   render_views
 	describe "as an admin" do
 		
@@ -170,18 +170,21 @@ describe PostsController do
 	  end
 
 	  it "update action should render edit template when model is invalid" do
+			@author.posts = [Post.first]
 	    Post.any_instance.stubs(:valid?).returns(false)
 	    put :update, :id => Post.first
 	    response.should render_template(:edit)
 	  end
 
 	  it "update action should redirect when model is valid" do
+			@author.posts = [Post.first]
 	    Post.any_instance.stubs(:valid?).returns(true)
 	    put :update, :id => Post.first
 	    response.should redirect_to(post_url(assigns[:post]))
 	  end
 
 	  it "destroy action should destroy model and redirect to index action" do
+			@author.posts = [Post.first]
 	    post = Post.first
 	    delete :destroy, :id => post
 	    response.should redirect_to(posts_url)

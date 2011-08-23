@@ -1,0 +1,33 @@
+-title "#{@user.name.humanize}"
+
+%h2 Personal details:
+
+%p
+	%strong E-mail:
+	= @user.email
+
+%p
+	%strong Registration date:
+	= @user.created_at
+
+%p
+	%strong Roles:
+	= @user.roles.join(',')
+
+%p
+	= link_to 'edit', edit_admin_user_path(@user)
+	| 
+	= link_to 'destroy', admin_user_path(@user), :method => :delete, :confirmation => "Are you sure you want to delete #{@user.name}?"
+
+%h2 Recent comments:
+
+%br
+- for comment in @user.comments.order(:created_at)
+	.comment.box
+		="In reply to post: #{comment.post.title}, #{time_ago_in_words comment.created_at} ago"
+		%p
+			= comment.content
+		%span.quiet
+			= link_to :edit, edit_admin_comments_path comment 
+			| 
+			= link_to :destroy, admin_comments_path(comment, :method => :delete, :confirmation => "Are you sure you want to delete this comment?")

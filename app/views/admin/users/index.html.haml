@@ -1,0 +1,12 @@
+-title "User Index"
+
+%table
+	%tr
+		%th Name
+		%th E-mail
+	-for user in @users
+		%tr
+			%td= link_to user.name, admin_user_path(user)
+			%td= user.email
+			%td= link_to "edit", edit_admin_user_path(user)
+			%td= link_to "destroy",  admin_user_path(user), :method => :delete, :confirmation => "Are you sure you want to delete #{user.name}?"

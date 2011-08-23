@@ -3,6 +3,11 @@
 %h2 
 	Profile page for
 	= @user.name.humanize
+	
+- if can? :edit, @user
+	%p
+		%strong E-mail:
+		= @user.email
 
 %h2= "Recent comments by #{@user.name.humanize}"
 

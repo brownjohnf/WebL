@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
 	attr_accessible :name, :email, :password, :password_confirmation
-	# TODO: add dynamic attr_accessible
+	attr_accessible :name, :email, :password, :password_confirmation, :roles, :as => :admin
 	has_secure_password
 	
 	email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -17,9 +17,10 @@ class User < ActiveRecord::Base
 												:on					=> :create
 												
 	before_save :generate_salt
+	before_destroy :update_authored_articles
 	
 	has_many :posts
-	has_many :comments
+	has_many :comments, :dependent => :destroy
 	
 	def to_param
 		"#{id}-#{name.parameterize}"
@@ -49,6 +50,20 @@ class User < ActiveRecord::Base
 		def generate_salt
 			if new_record? 
 				self.cookie_hash = BCrypt::Password.create("#{Time.now.utc}--#{password_digest}--#{rand}")
+			end
+		end
+		
+		def update_authored_articles
+			# This method takes all the authored articles and updates them to a special 'deleted' user
+			# the special 'deleted' user is created if necessary
+			# to make sure that nobody registeres this name to steal articles, the user status is set to banned just to be sure
+			random_pass = "#{Time.now.utc}--#{rand}"
+			deleted_author = User.find_or_create_by_name(:name => "Non existing user", :password => random_pass, :password_confirmation => random_pass, :email => APP_CONFIG[:deleted_user_email])
+			deleted_author.roles = ['banned']
+			deleted_author.save
+			posts.each do |post|
+				post.user = deleted_author
+				post.save
 			end
 		end
 end

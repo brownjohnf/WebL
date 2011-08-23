@@ -79,6 +79,18 @@ describe User do
 		@user.id = 105
 		@user.to_param.should == "#{@user.id}-#{@user.name.parameterize}"
 	end
+	
+	describe "when destroying a user" do
+		it "should transfer all the users posts to a special deleted user" do
+			@delete_user = Factory(:user, :name => 'to_be_deleted', :email => 'deleted@test.com')  
+			@post = Factory :post, :user_id => @delete_user.id
+			@delete_user.destroy
+			@post.reload
+			@post.user.should_not == @delete_user
+			@post.user.name.should =~ /non existing/i
+			@post.user.roles.should == ['banned']
+		end
+	end
 end
 
 

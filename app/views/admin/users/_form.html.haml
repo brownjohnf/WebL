@@ -1,0 +1,27 @@
+= form_for [:admin, @user] do |f|
+	%table.form
+		%tr
+			%td{colspan:2}
+				= f.error_messages
+		%tr
+			%td= f.label :name
+			%td= f.text_field :name
+		%tr
+			%td= f.label :email
+			%td= f.text_field :email
+		%tr
+			%td= f.label :password
+			%td= f.password_field :password
+		%tr
+			%td= f.label :password_confirmation
+			%td= f.password_field :password_confirmation
+		%tr
+			%td= f.label :roles
+			%td
+				- for role in User::ROLES
+					= check_box_tag "user[roles][]", role, @user.roles.include?(role)
+					= role.humanize
+				= hidden_field_tag "user[roles][]", ""
+		%tr
+			%td
+			%td= f.submit

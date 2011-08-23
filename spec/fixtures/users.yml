@@ -1,6 +1,5 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
-
 one:
+  id: 1
   name: MyString
   email: MyString
   password_digest: MyString
@@ -8,6 +7,7 @@ one:
   roles_mask: 1
 
 two:
+  id: 2
   name: MyString
   email: MyString
   password_digest: MyString

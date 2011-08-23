@@ -2,15 +2,6 @@ class CommentsController < ApplicationController
   load_and_authorize_resource :post
   load_and_authorize_resource :comment, :through => :post
 
-	def index
-	end
-
-  def show
-  end
-
-  def new
-  end
-
   def create
     if @comment.save
       redirect_to @post, :notice => "Successfully created comment."
