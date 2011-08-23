@@ -35,4 +35,5 @@ group :development do
 	gem 'autotest-rails-pure'
 	gem 'autotest-fsevent'
 	gem 'autotest-growl'	
+	gem 'pry'
 end

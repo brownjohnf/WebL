@@ -20,6 +20,15 @@
 	%strong Author:
 	= @post.user.name.humanize 
 
+%p
+	-if can? :edit, @post
+		= link_to "Edit", edit_post_path(@post) 
+		| 
+	-if can? :destroy, @post	
+		= link_to "Destroy", @post, :confirm => 'Are you sure?', :method => :delete 
+		| 
+	= link_to "View All", posts_path
+
 - if can? :read, Comment
 	%p
 		%strong Comments:
@@ -30,12 +39,3 @@
 	%p
 		%strong New Comment:
 		= render 'comments/form'
-
-%p
-	-if can? :edit, @post
-		= link_to "Edit", edit_post_path(@post) 
-		| 
-	-if can? :destroy, @post	
-		= link_to "Destroy", @post, :confirm => 'Are you sure?', :method => :delete 
-		| 
-	= link_to "View All", posts_path 
