@@ -1,26 +1,4 @@
 - title "Posts"
 
-= render :partial => 'search_form'
-
-%table
-	%tr
-		%th Title
-		%th Content
-		%th Publication Date
-		%th Published
-		%th Author
-	- for post in @posts 
-		%tr
-			%td= post.title 
-			%td= truncate post.content, :separator => ' ', :length => 50
-			%td= post.publication_date 
-			%td= post.published 
-			%td= post.user.name.humanize 
-			%td= link_to "Show", post 
-			-if can? :edit, post
-				%td= link_to "Edit", edit_post_path(post) 
-			-if can? :destory, post
-				%td= link_to "Destroy", post, :confirm => 'Are you sure?', :method => :delete 
-
-
-%p= link_to "New Post", new_post_path
+- for post in @posts
+	=render post, :locals => {:post => post}

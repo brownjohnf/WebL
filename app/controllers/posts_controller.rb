@@ -6,7 +6,7 @@ class PostsController < ApplicationController
 		if params[:user_id]
 			@posts = Post.accessible_by(current_ability).where(:user_id => params[:user_id])
 		else
-			@posts = Post.accessible_by(current_ability).published
+			@posts = Post.accessible_by(current_ability).published.limit(3)
 		end
   end
 

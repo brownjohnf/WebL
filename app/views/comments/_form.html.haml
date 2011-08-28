@@ -2,6 +2,6 @@
 = form_for [@post, @comment] do |f|
   = f.error_messages
   %p
-    = f.text_area :content
+    = f.text_area :content, :class => :xxlarge, :rows => 5
   %p
     = f.submit
