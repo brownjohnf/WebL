@@ -1,39 +1,12 @@
-- title "Post"
+- title @post.title, false
 
-%p
-	%strong Title:
-	= @post.title 
-
-%p
-	%strong Content:
-	= markdown @post.content 
-
-%p
-	%strong Publication Date:
-	= @post.publication_date 
-
-%p
-	%strong Published:
-	= @post.published 
-
-%p
-	%strong Author:
-	= @post.user.name.humanize 
-
-%p
-	-if can? :edit, @post
-		= link_to "Edit", edit_post_path(@post) 
-		| 
-	-if can? :destroy, @post	
-		= link_to "Destroy", @post, :confirm => 'Are you sure?', :method => :delete 
-		| 
-	= link_to "View All", posts_path
+.post= render @post, :locals => {:post => @post}
+%p= link_to "Back to index", posts_path
 
 - if can? :read, Comment
-	%p
-		%strong Comments:
-		- for comment in @post.comments.includes(:user).order("created_at asc") do
-			=render comment
+	%h1 Comments:
+	- for comment in @post.comments.includes(:user).order("created_at asc") do
+		=render comment
 
 - if can? :create, Comment
 	%p

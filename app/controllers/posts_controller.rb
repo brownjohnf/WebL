@@ -34,11 +34,13 @@ class PostsController < ApplicationController
   end
 
   def edit
+		store_referer
   end
 
   def update
     if @post.update_attributes(params[:post])
-      redirect_to @post, :notice  => "Successfully updated post."
+			flash[:notice] = "Successfully updated post."
+      redirect_back_or @post
     else
       render :action => 'edit'
     end

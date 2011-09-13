@@ -1,13 +1,14 @@
 %hr
 %p
-	%strong= "#{comment.user.name.humanize}: "
-	%span.quiet= "#{time_ago_in_words comment.created_at} ago"
-	%br
 	= comment.content
+	%br
+	%strong= "#{comment.user.name.humanize}, "
+	%span.quiet= "#{time_ago_in_words comment.created_at} ago"
 	-if (can? :edit, comment) || (can? :destroy, comment)
-		%br
 		%span.quiet
+			(
 			-if can? :edit, comment
 				= link_to "edit", edit_post_comment_path(@post,comment)
 			-if can? :destroy, comment
 				= link_to "destroy", post_comment_path(@post,comment), :confirm => 'Are you sure?', :method => :delete
+			)
