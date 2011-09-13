@@ -1,10 +1,10 @@
 .topbar
 	.fill
 		.container
-			%h3= link_to "WebL", "#"
+			%h3= link_to "WebL", root_path
 			%ul
-				%li.active= link_to "Home", "#"
-				%li= link_to "About", "#"
+				= menu_item "Home", root_path
+				= menu_item "About", about_path
 			%ul.secondary-nav
 				%li= render 'posts/search_form'
 				- if signed_in? 

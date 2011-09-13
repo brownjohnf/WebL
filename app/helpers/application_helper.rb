@@ -10,4 +10,11 @@ module ApplicationHelper
 		content_tag :div, link_to("x", "#", :class => :close) + msg, :class => "alert-message #{name}"
 	end
 
+	def menu_item(name, link)
+		if current_page? link
+			content_tag(:li, link_to(name,link), :class => :active)
+		else
+			content_tag(:li, link_to(name,link))
+		end
+	end
 end
