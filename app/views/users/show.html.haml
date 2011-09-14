@@ -1,16 +1,15 @@
-- title @user.name.humanize, false
+- title @user.name.humanize
 
-%h2 
-	Profile page for
-	= @user.name.humanize
-	
 - if can? :edit, @user
 	%p
 		%strong E-mail:
 		= @user.email
 
-%h2= "Recent comments by #{@user.name.humanize}"
+%h2= "Recent comments"
 
-- for comment in @user.comments.order(:created_at).limit(10)
-	%hr
-	%p= comment.content
+- for comment in @user.comments.order("created_at desc").limit(10)
+	.comment
+		%strong="#{comment.post.title}, "
+		="#{time_ago_in_words comment.created_at} ago"
+		%p
+			= comment.content

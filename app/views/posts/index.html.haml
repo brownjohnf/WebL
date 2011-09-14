@@ -5,7 +5,8 @@
 		%h1= link_to post.title, post
 		%small
 			= "&mdash;".html_safe + " #{post.user.name.humanize}"
-			= " | #{time_ago_in_words post.publication_date} ago"
+			|
+			= post.publication_date < Time.current ? "#{time_ago_in_words post.publication_date} ago" : "#{time_ago_in_words post.publication_date} from now"
 			- if can? :edit, post
 				%span.subheading
 					|
@@ -16,6 +17,6 @@
 					= link_to "Remove", post_path(post), :method => :delete, :confirmation => "Are you sure you want to destroy this post?"
 
 		%hr
-		= markdown truncate(post.content, :length => 200, :separator => ' ')
+		= markdown truncate(post.content, :length => 1000, :separator => ' ').html_safe
 		= link_to("Read more", post)
 		= " (#{post.comments.count} comments)"

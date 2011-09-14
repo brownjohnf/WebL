@@ -4,11 +4,12 @@
 %p= link_to "Back to index", posts_path
 
 - if can? :read, Comment
-	%h1 Comments:
-	- for comment in @post.comments.includes(:user).order("created_at asc") do
-		=render comment
+	- unless @post.comments.empty?
+		%h1 Comments:
+		- for comment in @post.comments.includes(:user).order("created_at asc") do
+			=render comment
 
-- if can? :create, Comment
+- if can? :create, @post.comments.build
 	%p
 		%strong New Comment:
 		= render 'comments/form'

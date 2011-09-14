@@ -5,6 +5,8 @@
 			%ul
 				= menu_item "Home", root_path
 				= menu_item "About", about_path
+				- if signed_in?
+					= menu_item "New Post", new_post_path
 			%ul.secondary-nav
 				%li= render 'posts/search_form'
 				- if signed_in? 

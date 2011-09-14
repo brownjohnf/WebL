@@ -1,10 +1,11 @@
 class Post < ActiveRecord::Base
-  attr_accessible :title, :content, :publication_date, :published
+  attr_accessible :title, :content, :publication_date, :published, :comments_disabled
 
 	validates	:title,				:presence => :true,
 													:length => {:within => 3..60}
 	validates :content,			:presence => :true
 	validates :user_id,			:presence => :true 
+	validates :publication_date, :presence => :true
 	
 	belongs_to :user
 	

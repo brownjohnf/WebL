@@ -5,11 +5,17 @@ class Ability
 		@user = user
 		user ||= User.new # guest user (not logged in)
 
-		can [:read, :search], Post, :published => true
 		can :show, User
+		can [:read, :search], Post, :published => true
+		cannot [:read, :search], Post, ["publication_date > ?", Time.now] do |post|
+			post.publication_date > Time.now
+		end
+		can :read, Comment
+		
 		@user.nil? ? guest_roles : registered_roles
 		author_roles if user.has_role? 'author'
 		admin_roles if user.has_role? 'admin'
+		cannot :create, Comment, :post => {:comments_disabled => true}
 		banned_roles if user.has_role? 'banned'
   end
 

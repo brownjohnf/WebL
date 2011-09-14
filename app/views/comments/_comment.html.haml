@@ -2,7 +2,7 @@
 %p
 	= comment.content
 	%br
-	%strong= "#{comment.user.name.humanize}, "
+	%strong= link_to("#{comment.user.name.humanize}", user_path(comment.user)) + ", "
 	%span.quiet= "#{time_ago_in_words comment.created_at} ago"
 	-if (can? :edit, comment) || (can? :destroy, comment)
 		%span.quiet
