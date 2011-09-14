@@ -12,22 +12,23 @@
 		= yield(:head)
 
 	%body
-		.container
-			= render :partial => 'layouts/menu'
+		.wrapper
+			.container.body
+				= render :partial => 'layouts/menu'
 			
-			.row
-				.span12
-					- flash.each do |name, msg|
-						= flash_div(name, msg)
+				.row
+					.span12
+						- flash.each do |name, msg|
+							= flash_div(name, msg)
 				
-					- if show_title?
-						%h1= yield(:title)
+						- if show_title?
+							%h1= yield(:title)
 
-					= yield
+						= yield
 					
-				.span4
-					= yield(:sidebar)
-	%footer
-		.container
-			.row
-				= render :partial => 'layouts/footer'
+					.span4
+						= yield(:sidebar)
+		.footer
+			.container
+				.row
+					= render :partial => 'layouts/footer'
