@@ -9,3 +9,6 @@ webrat.log
 config/database.yml
 config/app_config.yml
 Gemfile.lock
+.rspec
+.autotest
+.rvmrc
