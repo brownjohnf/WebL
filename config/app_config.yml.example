@@ -1,0 +1,14 @@
+development:
+  domain: localhost
+  session_secret: #putyoursessionsecrethere
+  deleted_user_email: 'deleted@example.com'
+
+test:
+  domain: test.host
+  session_secret: #putyoursessionsecrethere
+  deleted_user_email: 'deleted@example.com'
+
+production:
+  domain: example.com
+  session_secret: #putyoursessionsecrethere
+  deleted_user_email: 'deleted@example.com'

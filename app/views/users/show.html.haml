@@ -4,6 +4,8 @@
 	%p
 		%strong E-mail:
 		= @user.email
+	%p
+		= link_to "Edit profile", edit_user_path(@user), :class => [:btn, :primary]
 
 %h2= "Recent comments"
 

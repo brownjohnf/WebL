@@ -26,7 +26,7 @@ class Ability
 	def registered_roles
 		can :create, Comment, :user_id => @user.id
 		can :update, Comment do |comment|  
-			comment.try(:user) == user  
+			comment.try(:user) == @user  
 		end
 		can :read, User
 		can :update, User do |user|
