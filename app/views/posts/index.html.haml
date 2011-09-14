@@ -4,7 +4,7 @@
 	.post
 		%h1= link_to post.title, post
 		%small
-			= "&mdash;".html_safe + " #{post.user.name.humanize}"
+			= "&mdash;".html_safe + " " + link_to("#{post.user.name.humanize}", user_path(post.user))
 			|
 			= post.publication_date < Time.current ? "#{time_ago_in_words post.publication_date} ago" : "#{time_ago_in_words post.publication_date} from now"
 			- if can? :edit, post
