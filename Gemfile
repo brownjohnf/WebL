@@ -7,7 +7,7 @@ gem 'jquery-rails'
 gem 'haml'
 gem 'cancan'
 gem 'redcarpet' 
-#gem 'gravatar_image_tag'
+gem 'gravatar_image_tag'
 
 # Gems used only for assets and not required
 # in production environments by default.

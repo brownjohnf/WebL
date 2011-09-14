@@ -2,12 +2,20 @@
 
 %table
 	%tr
+		%th
 		%th Name
 		%th E-mail
+		%th
+		%th
+		%th
 	-for user in @users
 		%tr
+			%td= gravatar_image_tag(user.email, :class => :gravatar, :gravatar => {:size => 30})
 			%td= link_to user.name, admin_user_path(user)
 			%td= user.email
 			%td= link_to "edit", edit_admin_user_path(user)
-			%td= link_to "ban", ban_admin_user_path(user), :method => :put, :confirmation => "Are you sure you want to ban #{user.name}?"
-			%td= link_to "destroy",  admin_user_path(user), :method => :delete, :confirmation => "Are you sure you want to delete #{user.name}?"
+			- if user.has_role? 'banned'
+				%td= link_to "unban", ban_admin_user_path(user), :method => :put, :confirm => "Are you sure you want to unban #{user.name}?"
+			- else
+				%td= link_to "ban", ban_admin_user_path(user), :method => :put, :confirm => "Are you sure you want to ban #{user.name}?"
+			%td= link_to "destroy",  admin_user_path(user), :method => :delete, :confirm => "Are you sure you want to delete #{user.name}?"

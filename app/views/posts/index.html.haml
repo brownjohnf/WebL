@@ -2,21 +2,25 @@
 
 - for post in @posts
 	.post
-		%h1= link_to post.title, post
-		%small
-			= "&mdash;".html_safe + " " + link_to("#{post.user.name.humanize}", user_path(post.user))
-			|
-			= post.publication_date < Time.current ? "#{time_ago_in_words post.publication_date} ago" : "#{time_ago_in_words post.publication_date} from now"
-			- if can? :edit, post
-				%span.subheading
+		.row
+			.span1
+				=gravatar_image_tag(post.user.email, :class => :gravatar, :gravatar => {:size => 50})
+			.span11
+				%h1= link_to post.title, post
+				%small
+					= "&mdash;".html_safe + " " + link_to("#{post.user.name.humanize}", user_path(post.user))
 					|
-					= link_to "Edit", edit_post_path(post)
-			- if can? :destroy, post
-				%span.subheading
-					|
-					= link_to "Remove", post_path(post), :method => :delete, :confirmation => "Are you sure you want to destroy this post?"
+					= post.publication_date < Time.current ? "#{time_ago_in_words post.publication_date} ago" : "#{time_ago_in_words post.publication_date} from now"
+					- if can? :edit, post
+						%span.subheading
+							|
+							= link_to "Edit", edit_post_path(post)
+					- if can? :destroy, post
+						%span.subheading
+							|
+							= link_to "Remove", post_path(post), :method => :delete, :confirmation => "Are you sure you want to destroy this post?"
 
-		%hr
-		= markdown truncate(post.content, :length => 1000, :separator => ' ').html_safe
-		= link_to("Read more", post)
-		= " (#{post.comments.count} comments)"
+				%hr
+				= markdown truncate(post.content, :length => 1000, :separator => ' ').html_safe
+				= link_to("Read more", post)
+				= " (#{post.comments.count} comments)"

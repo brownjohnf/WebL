@@ -1,17 +1,21 @@
-- title @user.name.humanize
+- title @user.name.humanize, false
 
-- if can? :edit, @user
-	%p
-		%strong E-mail:
-		= @user.email
-	%p
-		= link_to "Edit profile", edit_user_path(@user), :class => [:btn, :primary]
+.row.prepend-top
+	.span2= gravatar_image_tag(@user.email, :class => :gravatar)
+	.span8
+		%h1= @user.name.humanize
+		- if can? :edit, @user
+			%p
+				%strong E-mail:
+				= @user.email
+			.buttons.prepend-top
+				= link_to "Edit profile", edit_user_path(@user), :class => [:btn, :primary]
 
-%h2= "Recent comments"
+		%h2.prepend-top= "Recent comments"
 
-- for comment in @user.comments.order("created_at desc").limit(10)
-	.comment
-		%strong="#{comment.post.title}, "
-		="#{time_ago_in_words comment.created_at} ago"
-		%p
-			= comment.content
+		- for comment in @user.comments.order("created_at desc").limit(10)
+			.comment
+				%strong="#{comment.post.title}, "
+				="#{time_ago_in_words comment.created_at} ago"
+				%p
+					= comment.content

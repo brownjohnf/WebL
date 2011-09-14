@@ -43,9 +43,14 @@ class Admin::UsersController < Admin::AdminController
 
 	def ban
 		@user = User.find(params[:id])
-		@user.roles = ['banned']
+		if @user.has_role? 'banned'
+			@user.roles = @user.roles.reject {|r| r == 'banned'}
+			flash[:notice] = "User #{@user.name} has been unbanned."
+		else
+			@user.roles += ['banned']
+			flash[:notice] = "User #{@user.name} has been banned."
+		end
 		@user.save!
-		flash[:notice] = "User #{@user.name} has been banned."
 		redirect_to :back
 	end
 
