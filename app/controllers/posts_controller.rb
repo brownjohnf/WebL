@@ -16,6 +16,7 @@ class PostsController < ApplicationController
 		else
 			@posts = Post.accessible_by(current_ability)
 		end
+		render 'index'
 	end
 
   def show
