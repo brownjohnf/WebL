@@ -9,4 +9,12 @@ The basics seems to be mostly covered on the back end. CanCan (http://github.com
 
 Redcarpet is used to provide markdown in posts
 
-However, no lay-out of any kind has been developed. Feel free to reuse the code nonetheless.
+Lay-out
+=======
+No significant lay-out has been created. Some basics with Twitter's [bootstrap][1] have been introduced so that there is at least some eye-candy to watch. 
+
+[1]: http://twitter.github.com/bootstrap/
+
+Installation
+============
+Installing the app is fairly trivial. Just copy this repository and rename app_config.yml.example to app_config.yml. Don't forget to generate and add a session_secret to this file. (You might use a nice SHA1 digest of some random number for example.)
