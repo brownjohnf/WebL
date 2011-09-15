@@ -27,5 +27,6 @@
 					-if can? :destroy, post
 						= link_to "Destroy", post, :confirm => 'Are you sure?', :method => :delete
 
+=will_paginate @posts
 
 %p= link_to "New Post", new_post_path

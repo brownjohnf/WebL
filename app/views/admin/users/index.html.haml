@@ -19,3 +19,5 @@
 			- else
 				%td= link_to "ban", ban_admin_user_path(user), :method => :put, :confirm => "Are you sure you want to ban #{user.name}?"
 			%td= link_to "destroy",  admin_user_path(user), :method => :delete, :confirm => "Are you sure you want to delete #{user.name}?"
+
+= will_paginate @users

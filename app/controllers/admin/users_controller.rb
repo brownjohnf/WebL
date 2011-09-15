@@ -1,7 +1,8 @@
 class Admin::UsersController < Admin::AdminController
-	load_resource
+	load_resource :except => :index
 	
   def index
+		@users = User.order(:name).paginate(:page => params[:page])
   end
 
   def show

@@ -1,7 +1,8 @@
 class Admin::CommentsController < Admin::AdminController
-	load_resource
+	load_resource :except => :index
 	
   def index
+		@comments = Comment.order("created_at DESC").paginate(:page => params[:page])
   end
 
   def edit

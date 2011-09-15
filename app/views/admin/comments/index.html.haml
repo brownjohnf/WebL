@@ -2,17 +2,19 @@
 
 %table
 	%tr
-		%th User
-		%th Post
+		%th Recent comments
 	-for comment in @comments
 		%tr
-			%td{:colspan => 2}
+			%td
 				%p 
-					=link_to comment.user.name, admin_user_path(comment.user)
+					=link_to comment.user.name.humanize, admin_user_path(comment.user)
+					|
 					=link_to comment.post.title, post_path(comment.post)
+					%span.right=comment.created_at
 				%p= comment.content
 				%p
 					= link_to "edit", edit_admin_comment_path(comment)
 					|
 					= link_to "destroy",  admin_comment_path(comment), :method => :delete, :confirmation => "Are you sure you want to delete this comment?"
-
+					
+= will_paginate @comments
