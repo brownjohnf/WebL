@@ -12,7 +12,7 @@
 - if can? :create, @post.comments.build
 	.row
 		.span1
-			= gravatar_image_tag(current_user.email, :class => :gravatar, :alt => comment.user.name, :gravatar => {:size => 50})
+			= gravatar_image_tag(current_user.email, :class => :gravatar, :gravatar => {:size => 50})
 		.span9
 			%strong New Comment:
 			= render 'comments/form'

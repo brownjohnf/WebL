@@ -8,10 +8,10 @@ describe CommentsController do
 		@user = Factory(:user)
 		@user.roles = ['admin']
 		sign_in @user
-	  @post = Post.new(:title => "test", :content => "test content" )
+	  @post = Post.new(:title => "test", :content => "test content", :publication_date => Time.now )
 		@post.user = @user
 		@post.id = 1
-		@post.save
+		@post.save!
 	end
 
   it "create action should redirect back to a post when model is invalid" do

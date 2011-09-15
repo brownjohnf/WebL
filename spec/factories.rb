@@ -16,4 +16,5 @@ end
 Factory.define :post do |post|
 	post.title 				"Dummy Title"
 	post.content			"Dummy Content"
+	post.publication_date	Time.now
 end

@@ -164,6 +164,8 @@ describe PostsController do
 
 	  it "edit action should deny access for non owned posts" do
 			@author.posts = [Post.first]
+			@author2 = Factory(:user, :name => "other author", :email => Factory.next(:email))
+			@author2.posts = [Post.last]
 	    get :edit, :id => Post.last
 	    response.should redirect_to root_path
 			flash[:error].should =~ /access denied/i
