@@ -6,8 +6,9 @@
 - if can? :read, Comment
 	- unless @post.comments.empty?
 		%h1 Comments:
-		- for comment in @post.comments.includes(:user).order("created_at asc") do
+		- for comment in @comments do
 			=render comment
+		=will_paginate @comments
 
 - if can? :create, @post.comments.build
 	.row

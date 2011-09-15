@@ -4,22 +4,23 @@ class PostsController < ApplicationController
 
   def index
 		if params[:user_id]
-			@posts = Post.accessible_by(current_ability).where(:user_id => params[:user_id])
+			@posts = Post.accessible_by(current_ability).where(:user_id => params[:user_id]).paginate(:page => params[:page])
 		else
-			@posts = Post.accessible_by(current_ability).published.limit(3)
+			@posts = Post.accessible_by(current_ability).published.paginate(:page => params[:page], :per_page => 3)
 		end
   end
 
 	def search
 		if params[:q]
-			@posts = Post.accessible_by(current_ability).where('title LIKE :title', :title => "%#{params[:q]}%")
+			@posts = Post.accessible_by(current_ability).where('title LIKE :title', :title => "%#{params[:q]}%").paginate(:page => params[:page])
 		else
-			@posts = Post.accessible_by(current_ability)
+			@posts = Post.accessible_by(current_ability).paginate(:page => params[:page])
 		end
 		render 'index'
 	end
 
   def show
+		@comments = @post.comments.includes(:user).order("created_at asc").paginate(:page => params[:page])
   end
 
   def new

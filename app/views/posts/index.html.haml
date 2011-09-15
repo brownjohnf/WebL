@@ -24,3 +24,4 @@
 				= markdown truncate(post.content, :length => 1000, :separator => ' ').html_safe
 				= link_to("Read more", post)
 				= " (#{post.comments.count} comments)"
+=will_paginate @posts
