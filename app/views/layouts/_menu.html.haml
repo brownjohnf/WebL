@@ -21,6 +21,8 @@
 						= link_to current_user.name.humanize, "#", :class => :menu
 						%ul
 							%li= link_to "Profile", user_path(current_user)
+							- if can? :create, Post
+								%li= link_to "My Posts", user_posts_path(current_user)
 							%li.divider
 							%li= link_to "Sign out", sign_out_path
 				- else
