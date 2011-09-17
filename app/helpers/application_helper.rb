@@ -11,7 +11,7 @@ module ApplicationHelper
     doc.search("//pre[@lang]").each do |pre|  
 			pre.replace CodeRay.scan(pre.text.rstrip, pre[:lang]).div(:css => :class)
     end  
-    doc.to_s  
+    doc.inner_html.to_s  
   end
 
 	def flash_div(name, msg)
