@@ -3,7 +3,6 @@ $(document).ready(function(){
 		dateFormat: 'yy-mm-dd',
 		timeFormat: 'hh:mm:ss',
 		stepMinute: 5,
-		minuteGrid: 10,
-		minDate: 0
+		minuteGrid: 10
 	});
 });
