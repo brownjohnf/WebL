@@ -10,7 +10,7 @@
 			=render comment
 		=will_paginate @comments
 
-- if can? :create, @post.comments.build
+- if can? :create, Comment
 	.row
 		.span1
 			= gravatar_image_tag(current_user.email, :class => :gravatar, :gravatar => {:size => 50})
