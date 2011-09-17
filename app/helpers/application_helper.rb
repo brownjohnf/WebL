@@ -3,7 +3,15 @@ module ApplicationHelper
 	def markdown(text)  
 		options = [:hard_wrap, :filter_html, :autolink, 
 		      		 :no_intraemphasis, :fenced_code, :gh_blockcode]
-		Redcarpet.new(text, *options).to_html.html_safe  
+		syntax_highlighter(Redcarpet.new(text, *options).to_html).html_safe
+  end
+
+	def syntax_highlighter(html)  
+    doc = Nokogiri::HTML(html)  
+    doc.search("//pre[@lang]").each do |pre|  
+			pre.replace CodeRay.scan(pre.text.rstrip, pre[:lang]).div(:css => :class)
+    end  
+    doc.to_s  
   end
 
 	def flash_div(name, msg)

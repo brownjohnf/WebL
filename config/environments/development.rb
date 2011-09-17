@@ -24,4 +24,7 @@ Webl::Application.configure do
 
   # Do not compress assets
   config.assets.compress = false
+
+	# Haml speed-up
+	Haml::Template.options[:ugly] = true
 end
