@@ -18,10 +18,10 @@
 %p
 	= link_to 'edit', edit_admin_user_path(@user), :class => :btn
 	- if @user.has_role? :banned
-		= link_to "unban", ban_admin_user_path(@user), :method => :put, :confirmation => "Are you sure you want to ban #{@user.name}?", :class => :btn
+		= link_to "unban", ban_admin_user_path(@user), :method => :put, :confirm => "Are you sure you want to unban #{@user.name}?", :class => :btn
 	- else
-		= link_to "ban", ban_admin_user_path(@user), :method => :put, :confirmation => "Are you sure you want to ban #{@user.name}?", :class => :btn		
-	= link_to 'destroy', admin_user_path(@user), :method => :delete, :confirmation => "Are you sure you want to delete #{@user.name}?", :class => :btn
+		= link_to "ban", ban_admin_user_path(@user), :method => :put, :confirm => "Are you sure you want to ban #{@user.name}?", :class => :btn		
+	= link_to 'destroy', admin_user_path(@user), :method => :delete, :confirm => "Are you sure you want to delete #{@user.name}?", :class => :btn
 
 %h2 Recent comments:
 
@@ -34,4 +34,4 @@
 		%span.quiet
 			= link_to :edit, edit_admin_comment_path(comment)
 			|
-			= link_to :destroy, admin_comment_path(comment, :method => :delete, :confirmation => "Are you sure you want to delete this comment?")
+			= link_to :destroy, admin_comment_path(comment, :method => :delete, :confirm => "Are you sure you want to delete this comment?")
