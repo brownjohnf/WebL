@@ -1,8 +1,7 @@
 = form_for [:admin, @user] do |f|
 	.fieldset
 		.clearfix
-			%td{colspan:2}
-				= f.error_messages
+			= f.error_messages
 		.clearfix
 			=f.label :name
 			.input= f.text_field :name
