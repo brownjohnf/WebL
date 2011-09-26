@@ -1,25 +1,25 @@
-.topbar
-	.fill
+#topbar.topbar{"data-dropdown" => "dropdown"}
+	.topbar-inner
 		.container
 			%h3= link_to "WebL", root_path
-			%ul
+			%ul.nav
 				= menu_item "Home", root_path
 				- if can? :create, Post
 					= menu_item "New Post", new_post_path
 				= menu_item "About", about_path
-			%ul.secondary-nav
-				%li= render 'posts/search_form'
+			= render 'posts/search_form'
+			%ul.nav.secondary-nav
 				- if can? :manage, :all
-					%li.menu
-						= link_to "Manage", "#", :class => :menu
-						%ul
+					%li.dropdown
+						= link_to "Manage", "#", :class => "dropdown-toggle"
+						%ul.dropdown-menu
 							%li= link_to "Users", admin_users_path
 							%li= link_to "Posts", admin_posts_path
 							%li= link_to "Comments", admin_comments_path
 				- if signed_in? 
-					%li.menu
-						= link_to current_user.name.humanize, "#", :class => :menu
-						%ul
+					%li.dropdown
+						= link_to current_user.name.humanize, "#", :class => "dropdown-toggle"
+						%ul.dropdown-menu
 							%li= link_to "Profile", user_path(current_user)
 							- if can? :create, Post
 								%li= link_to "My Posts", user_posts_path(current_user)

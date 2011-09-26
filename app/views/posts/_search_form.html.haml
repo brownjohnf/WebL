@@ -1,2 +1,2 @@
-= form_tag(search_posts_path, :method => 'get') do
+= form_tag(search_posts_path, :method => 'get', :class => "pull-left") do
 		= text_field_tag :q, params[:q], :placeholder => "Search posts"
