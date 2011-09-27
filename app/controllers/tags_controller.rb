@@ -15,7 +15,7 @@ class TagsController < ApplicationController
 	end
 	
 	def show
-		@posts = @tag.posts.accessible_by(current_ability).published
+		@posts = @tag.posts.accessible_by(current_ability).published.paginate(:page => params[:page], :per_page => 3)
 	end
 end
 
