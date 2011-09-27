@@ -4,7 +4,7 @@
 		.clearfix
 			= f.label 'Title' 
 			.input
-				= f.text_field :title 
+				= f.text_field :title, :class => :xxlarge
 				
 		.clearfix
 			= f.label "Content" 
@@ -19,7 +19,7 @@
 		.clearfix
 			= f.label "Tags"
 			.input
-				= f.text_field :tags, :id => 'tokeninput'
+				= f.text_field :tag_tokens, :id => 'tokeninput', 'data-pre' => @post.tag_tokens.to_json
 
 		.clearfix
 			= f.label "Options"
