@@ -25,12 +25,15 @@ class Post < ActiveRecord::Base
 	def tag_tokens
 		@tag_tokens = []
 		self.tags.each do |tag|
-			@tag_tokens << {:id => tag.id, :name => tag.name}
+			@tag_tokens << {:id => tag.id, :name => tag.name.humanize}
 		end
 		@tag_tokens
 	end
 
 	def tag_tokens=(ids)
+		ids.gsub!(/CREATE_TAG_(.+?)_END/) do
+		  Tag.create!(:name => $1.humanize).id
+		end
 		self.tag_ids = ids.split(",")
 	end
 end 

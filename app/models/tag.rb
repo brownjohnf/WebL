@@ -3,4 +3,7 @@ class Tag < ActiveRecord::Base
 	
 	has_many :tagments
 	has_many :posts, :through => :tagments
+	
+	validates :name, :presence => :true,
+									 :uniqueness => :true
 end
