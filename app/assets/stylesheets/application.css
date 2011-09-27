@@ -5,6 +5,7 @@
  *= require bootstrap
  *= require jquery-ui
  *= require jquery-ui-timepicker
+ *= require token-input-facebook
  *= require_self
  *= require_tree . 
 */
