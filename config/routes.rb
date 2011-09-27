@@ -21,6 +21,7 @@ Webl::Application.routes.draw do
 		resources :comments, :except => [:index, :show, :new]
 		get 'search', :on => :collection
 	end
+	resources :tags, :only => [:index, :show]
 	
 
 

@@ -7,6 +7,7 @@ class Ability
 
 		can :show, User
 		can [:read, :search], Post, :published => true
+		can [:show], Tag
 		cannot [:read, :search], Post, ["publication_date > ?", Time.now] do |post|
 			post.publication_date > Time.now
 		end
@@ -35,6 +36,7 @@ class Ability
 	end
 	
 	def author_roles
+		can :index, Tag
 		can :create, Post
 		can :read, Post, :published => false, :user_id => @user.id
 		can [:update, :destroy], Post do |post|
