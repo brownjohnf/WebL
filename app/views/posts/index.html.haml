@@ -11,6 +11,8 @@
 					= "&mdash;".html_safe + " " + link_to("#{post.user.name.humanize}", user_path(post.user))
 					|
 					= post.publication_date < Time.current ? "#{time_ago_in_words post.publication_date} ago" : "#{time_ago_in_words post.publication_date} from now"
+					|
+					%span.label.notice tag
 					- if can? :edit, post
 						%span.subheading
 							|

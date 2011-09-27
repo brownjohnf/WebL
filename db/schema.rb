@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110914121621) do
+ActiveRecord::Schema.define(:version => 20110927174642) do
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
@@ -31,6 +31,23 @@ ActiveRecord::Schema.define(:version => 20110914121621) do
     t.datetime "updated_at"
     t.boolean  "comments_disabled"
   end
+
+  create_table "tagments", :force => true do |t|
+    t.integer  "post_id"
+    t.integer  "tag_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "tagments", ["post_id", "tag_id"], :name => "index_tagments_on_post_id_and_tag_id", :unique => true
+
+  create_table "tags", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "tags", ["name"], :name => "index_tags_on_name", :unique => true
 
   create_table "users", :force => true do |t|
     t.string   "name"

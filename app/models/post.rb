@@ -1,5 +1,7 @@
 class Post < ActiveRecord::Base
-  attr_accessible :title, :content, :publication_date, :published, :comments_disabled
+  attr_accessible :title, :content, 
+									:publication_date, :published, :comments_disabled,
+									:tags_attributes, :tags
 
 	validates	:title,				:presence => :true,
 													:length => {:within => 3..60}
@@ -13,6 +15,8 @@ class Post < ActiveRecord::Base
 	scope :published, where(:published => true)
 	
 	has_many :comments, :dependent => :destroy
+	has_many :tagments
+	has_many :tags, :through => :tagments
 	
 	def to_param
 		"#{id}-#{title.parameterize}"
