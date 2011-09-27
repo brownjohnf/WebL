@@ -1,18 +1,9 @@
 -# Contained in a span12
-.post
-	%h1= post.title
-	%small
-		= "&mdash;".html_safe + " " + link_to("#{post.user.name.humanize}", user_path(post.user))
-		|
-		= post.publication_date < Time.current ? "#{time_ago_in_words post.publication_date} ago" : "#{time_ago_in_words post.publication_date} from now"
-		- if can? :edit, post
-			%span.subheading
-				|
-				= link_to "Edit", edit_post_path(post)
-		- if can? :destroy, post
-			%span.subheading
-				|
-				= link_to "Remove", post_path(post), :method => :delete, :confirm => "Are you sure you want to destroy this post?"
+.row
+	= render :partial => 'post_header', :locals => {:post => post}
 
-	%hr
+.row
+	.span11.offset1
 		=markdown post.content
+		
+		= link_to "Back to index", posts_path

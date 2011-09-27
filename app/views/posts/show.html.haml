@@ -1,7 +1,6 @@
 - title @post.title, false
 
 .post= render @post, :locals => {:post => @post}
-%p= link_to "Back to index", posts_path
 
 - if can? :read, Comment
 	- unless @post.comments.empty?
