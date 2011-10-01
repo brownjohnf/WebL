@@ -9,7 +9,7 @@
 		- if post.tags.any?
 			|
 			- post.tags.each do |tag|
-				%span.label.notice= tag.name.humanize
+				%span.label.notice= link_to tag.name.humanize, tag
 		- if can? :edit, post
 			%span.subheading
 				|

@@ -11,6 +11,40 @@ body .wrapper {
 	padding-bottom: 170px;
 }
 
+.right {
+	float: right;
+}
+
+.left {
+	float: left;
+}
+
+.append-bottom {
+	margin-bottom: 25px;
+}
+
+.prepend-top {
+	margin-top:25px;
+}
+
+
+/*links*/
+
+span.label.notice {
+	a {
+		text-decoration: none;
+		color: white;
+	}
+	
+	a:hover {
+		color: #EEE;
+	}
+}
+
+form .error.append-bottom {
+	margin-bottom: 25px;
+}
+
 .footer {
 	height: 169px;
 	margin-top: -170px;
@@ -27,26 +61,6 @@ body .wrapper {
 	.row {
 		margin-bottom: 0;
 	}
-}
-
-.right {
-	float: right;
-}
-
-.left {
-	float: left;
-}
-
-form .error.append-bottom {
-	margin-bottom: 25px;
-}
-
-.append-bottom {
-	margin-bottom: 25px;
-}
-
-.prepend-top {
-	margin-top:25px;
 }
 
 .sidebar {
