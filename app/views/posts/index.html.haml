@@ -12,3 +12,6 @@
 				= " (#{post.comments.count} comments)"
 
 =will_paginate @posts
+
+=content_for(:sidebar) do
+	= render :partial => 'layouts/taglist'

@@ -1,0 +1,4 @@
+%h1 Tags:
+%ul.taglist
+	- active_tags(20).each do |tagment|
+		%li= link_to "#{tagment.tag.name.humanize} (#{tagment.count})", tagment.tag

@@ -1,3 +1,20 @@
-= render @posts
+-title "Posts tagged #{@tag.name}"
+	
+- for post in @posts
+	.post
+		= render post
+
+- if @posts.empty?
+	.alert-message.block-message.error
+		= link_to "x", '#', :class => :close
+		%p
+			%strong Oh No! There seems to be a misunderstanding.
+		%p There are no posts associated with this tag.
+		.alert-actions
+			= link_to "I give up, take me back to the homepage", root_path, :class => [:btn, :small]
+			
 
 =will_paginate @posts
+
+=content_for(:sidebar) do
+	= render :partial => 'layouts/taglist'

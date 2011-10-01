@@ -48,3 +48,17 @@ form .error.append-bottom {
 .prepend-top {
 	margin-top:25px;
 }
+
+.sidebar {
+	h1 {
+		font-size: 16pt;
+		margin-bottom: 4pt;
+	}
+	ul.taglist {
+		margin: 4pt;
+		li {
+			display: block;
+			line-height: 16pt;
+		}
+	}
+}

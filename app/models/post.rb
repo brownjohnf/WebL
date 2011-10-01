@@ -11,7 +11,7 @@ class Post < ActiveRecord::Base
 	
 	belongs_to :user
 	
-	default_scope order('publication_date DESC')
+	default_scope order('publication_date DESC').includes(:tags).includes(:user)
 	scope :published, where(:published => true)
 	
 	has_many :comments, :dependent => :destroy

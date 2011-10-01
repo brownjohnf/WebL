@@ -19,4 +19,12 @@ module LayoutHelper
   def javascript(*args)
     content_for(:head) { javascript_include_tag(*args) }
   end
+
+	def recent_tags(limit = 5)
+		Tag.order("created_at DESC").limit(limit)
+	end
+	
+	def active_tags(limit = 5)
+		Tagment.select("*, count('tag_id') as 'count'").includes(:tag).group(:tag_id).order('count(*) DESC').limit(limit)
+	end
 end
