@@ -36,7 +36,7 @@ group :development do
 	gem 'annotate'
 	gem 'nifty-generators'
 	gem 'faker'
-	gem 'spork'
+	gem 'spork', '~> 0.9.0.rc'
 	gem 'autotest'
 	gem 'autotest-rails-pure'
 	gem 'autotest-fsevent'
