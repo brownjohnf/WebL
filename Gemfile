@@ -1,8 +1,6 @@
 source 'http://rubygems.org'
 
 gem 'rails', '~>3.1'
-gem 'sqlite3'
-
 gem 'jquery-rails'
 gem 'haml'
 gem 'cancan'
@@ -32,6 +30,8 @@ group :test do
 end
 
 group :development do
+	gem 'capistrano'
+	gem 'sqlite3'
   gem 'rspec-rails'
 	gem 'annotate'
 	gem 'nifty-generators'

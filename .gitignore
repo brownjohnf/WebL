@@ -2,13 +2,15 @@
 db/*.sqlite3
 log/*.log
 tmp/
-.DS_Store
 *~
 webrat.log
-.tmproj
 config/database.yml
 config/app_config.yml
+config/deploy.rb
+Capfile
 Gemfile.lock
 .rspec
 .autotest
 .rvmrc
+.tmproj
+.DS_Store
