@@ -13,6 +13,8 @@ Webl::Application.configure do
 
   # Compress JavaScripts and CSS
   config.assets.compress = true
+
+	# Use digests for caching
 	config.assets.digest = true
 
   # Specifies the header that your server uses for sending files
