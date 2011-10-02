@@ -6,7 +6,6 @@ tmp/
 webrat.log
 config/deploy.rb
 Capfile
-Gemfile.lock
 .rspec
 .autotest
 .rvmrc
