@@ -4,8 +4,6 @@ log/*.log
 tmp/
 *~
 webrat.log
-config/database.yml
-config/app_config.yml
 config/deploy.rb
 Capfile
 Gemfile.lock

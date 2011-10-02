@@ -1,14 +1,14 @@
 development:
   domain: localhost
-  session_secret: #putyoursessionsecrethere
+  session_secret: 499529d9d6a48ff4bca1b4a1735404588f2cfdd968b62c8f
   deleted_user_email: 'deleted@example.com'
 
 test:
   domain: test.host
-  session_secret: #putyoursessionsecrethere
+  session_secret: 499529d9d6a48ff4bca1b4a1735404588f2cfdd968b62c8f
   deleted_user_email: 'deleted@example.com'
 
 production:
   domain: example.com
-  session_secret: #putyoursessionsecrethere
+  session_secret: 499529d9d6a48ff4bca1b4a1735404588f2cfdd968b62c8f
   deleted_user_email: 'deleted@example.com'
