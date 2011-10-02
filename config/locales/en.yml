@@ -3,3 +3,8 @@
 
 en:
   hello: "Hello world"
+  helpers:
+    submit:
+      user:
+        create: "Register"
+        update: "Save changes"
