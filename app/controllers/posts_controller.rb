@@ -24,7 +24,7 @@ class PostsController < ApplicationController
   end
 
   def new
-		@post.publication_date = Time.current
+		@post.publication_date = Time.zone.now
   end
 
   def create
