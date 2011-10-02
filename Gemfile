@@ -14,6 +14,7 @@ gem 'coderay'
 
 group :production do
 	gem 'therubyracer'
+	gem 'mysql2'
 end
 
 group :assets do
