@@ -22,5 +22,12 @@ describe Post do
 	  Post.create(@attr).should_not be_valid
 	end
 	
-	
+	it "should disconnect any tags when being destroyed" do
+	  @post = @user.posts.create!(@attr)
+		@tag = Tag.create!(:name => "test")
+		@post.tags << @tag
+		@post.save
+		@post.destroy
+		@tag.posts.count.should == 0
+	end
 end
