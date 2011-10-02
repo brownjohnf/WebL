@@ -15,7 +15,7 @@ class Post < ActiveRecord::Base
 	scope :published, where(:published => true)
 	
 	has_many :comments, :dependent => :destroy
-	has_many :tagments
+	has_many :tagments, :dependent => :destroy
 	has_many :tags, :through => :tagments
 	
 	def to_param
