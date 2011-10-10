@@ -6,4 +6,7 @@
 	.span11.offset1
 		=markdown post.content
 		
+		- if can? :edit, post
+			= link_to "Edit", edit_post_path(post)
+			|
 		= link_to "Back to index", posts_path
