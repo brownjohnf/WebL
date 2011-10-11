@@ -10,6 +10,7 @@
 		= javascript_include_tag :application
 		= csrf_meta_tags
 		= yield(:head)
+		= render :partial => 'layouts/analytics'
 
 	%body
 		.wrapper
@@ -33,3 +34,4 @@
 			.container
 				.row
 					= render :partial => 'layouts/footer'
+
