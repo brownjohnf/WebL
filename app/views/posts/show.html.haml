@@ -17,3 +17,7 @@
 			.span9
 				%strong New Comment:
 				= render 'comments/form'
+- else
+	.row
+		.span9.offset1
+			= "Please #{link_to "sign in", sign_in_path} to comment"
