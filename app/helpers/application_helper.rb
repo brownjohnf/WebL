@@ -1,15 +1,21 @@
 module ApplicationHelper
 
 	def markdown(text)  
-		options = [:hard_wrap, :filter_html, :autolink, 
-		      		 :no_intraemphasis, :fenced_code, :gh_blockcode]
-		syntax_highlighter(Redcarpet.new(text, *options).to_html).html_safe
+		options = { :hard_wrap => true, 
+		            :filter_html => true,  
+		      		  :gh_blockcode => true,
+		      		  :no_intraemphasis => true
+		      		  }
+		extensions = {:fenced_code_blocks => true,
+		      		    :strikethrough => true}
+		md = Redcarpet::Markdown.new(Redcarpet::Render::HTML.new(options),extensions)
+		syntax_highlighter(md.render(text)).html_safe
   end
 
 	def syntax_highlighter(html)  
     doc = Nokogiri::HTML(html)  
-    doc.search("//pre[@lang]").each do |pre|  
-			pre.replace CodeRay.scan(pre.text.rstrip, pre[:lang]).div(:css => :class)
+    doc.search("//pre/code[@class]").each do |code|  
+			code.parent.replace CodeRay.scan(code.text.rstrip, code[:class]).div(:css => :class)
     end  
     doc.inner_html.to_s  
   end

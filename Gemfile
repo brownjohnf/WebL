@@ -6,6 +6,7 @@ gem 'haml'
 gem 'cancan'
 gem 'gravatar_image_tag'
 gem 'will_paginate', '~> 3.0.0'
+gem 'bcrypt-ruby'
 
 # Formatting and code highlighting
 gem 'redcarpet' 
