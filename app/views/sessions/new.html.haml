@@ -1,19 +1,22 @@
 -title "Sign in"
 
 = form_for(:session, :url => sessions_path) do |f|
-	.fieldset
-		= f.error_messages 
-		.clearfix
-			= f.label :name
-			.input
-				= f.text_field :name
+  .fieldset
+    = f.error_messages 
+    .clearfix
+      = f.label :name
+      .input
+        = f.text_field :name
 
-		.clearfix
-			= f.label :password
-			.input
-				= f.password_field :password			
-		.clearfix
-			.input
-				= f.submit "Sign in", :class => [:btn, :primary]
-				or
-				= link_to "Register", new_user_path, :class => :btn
+    .clearfix
+      = f.label :password
+      .input
+        = f.password_field :password      
+    .clearfix
+      .input
+        = f.submit "Sign in", :class => [:btn, :primary]
+        or
+        = link_to "Register", new_user_path, :class => :btn
+    .clearfix
+      .input
+        = "You can also #{link_to "Sign in using GitHub", new_from_github_sessions_path}".html_safe

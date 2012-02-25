@@ -1,19 +1,22 @@
 = form_for @user do |f|
-	.fieldset
-		=f.error_messages
-		- if params[:action] == 'new'
-			.clearfix
-				= f.label :name
-				.input= f.text_field :name
-		.clearfix
-			= f.label :email
-			.input= f.text_field :email
-		.clearfix
-			= f.label :password
-			.input= f.password_field :password
-		.clearfix
-			= f.label :password_confirmation
-			.input= f.password_field :password_confirmation
-		.clearfix
-			%td
-			.input= f.submit :class => [:btn, :primary]
+  .fieldset
+    =f.error_messages
+    - if params[:action] == 'new'
+      .clearfix
+        = f.label :name
+        .input= f.text_field :name
+    .clearfix
+      = f.label :email
+      .input= f.text_field :email
+    .clearfix
+      = f.label :password
+      .input= f.password_field :password
+    .clearfix
+      = f.label :password_confirmation
+      .input= f.password_field :password_confirmation
+    .clearfix
+      %td
+      .input= f.submit :class => [:btn, :primary]
+    .clearfix
+      .input
+        = "You can also #{link_to "Sign in using GitHub", new_from_github_sessions_path}".html_safe
