@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110927174642) do
+ActiveRecord::Schema.define(:version => 20120225160203) do
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
@@ -57,6 +57,9 @@ ActiveRecord::Schema.define(:version => 20110927174642) do
     t.integer  "roles_mask"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "github_uid"
+    t.string   "github_name"
+    t.string   "gravatar_token"
   end
 
 end

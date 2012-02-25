@@ -10,9 +10,11 @@ class User < ActiveRecord::Base
 												:length   	=> { :within => 4..20 },
 												:uniqueness => { :case_sensitive => false }
 	validates :email,			:presence		=> true,
-												:length			=> { :within => 6..60 },
+	                      :unless     => Proc.new { |user| user.github_uid }
+	validates :email,			:length			=> { :within => 6..60 },
 												:uniqueness => { :case_sensitive => false },
-												:format			=> { :with => email_regex }
+												:format			=> { :with => email_regex },
+												:unless     => Proc.new { |user| user.email.nil?}
 	validates :password, 	:presence		=> true,
 												:on					=> :create
 												
@@ -29,6 +31,18 @@ class User < ActiveRecord::Base
   def self.authenticate_with_cookie(id, cookie_salt)
 		user = find_by_id(id)
 		(user && user.cookie_hash == cookie_salt) ? user : nil
+ 	end
+ 	
+ 	def self.create_from_omniauth(omniauth)
+ 	  User.new.tap do |user|
+      user.github_uid = omniauth["uid"]
+      user.name = omniauth["info"]["nickname"]
+      user.email = omniauth["info"]["email"]
+      user.github_name = omniauth["info"]["name"]
+      user.gravatar_token = omniauth["extra"]["raw_info"]["gravatar_id"] if omniauth["extra"] && omniauth["extra"]["raw_info"]
+      user.password = BCrypt::Password.create("#{rand}--#{rand}") # random password for OAuth user
+      user.save!
+    end
  	end
 	
 	def roles=(roles)

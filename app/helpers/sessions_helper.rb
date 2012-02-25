@@ -36,8 +36,8 @@ module SessionsHelper
     redirect_to sign_in_path
   end
   
-  def redirect_back_or(default)
-    redirect_to(session[:return_to] || default)
+  def redirect_back_or(default, *options)
+    redirect_to(session[:return_to] || default, *options)
     clear_return_to
   end
 

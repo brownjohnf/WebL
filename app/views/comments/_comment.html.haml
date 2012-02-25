@@ -1,18 +1,18 @@
 .row
-	.span10
-		.row
-			.span1
-				= gravatar_image_tag(comment.user.email, :class => :gravatar, :alt => comment.user.name, :gravatar => {:size => 50})
-				
-			.span9
-				.comment_header
-					%strong
-						=link_to("#{comment.user.name.humanize}", user_path(comment.user)) + ", "
-					%span.quiet= "#{time_ago_in_words comment.created_at} ago"
-					-if (can? :edit, comment) || (can? :destroy, comment)
-						%span.quiet.edit_links
-							-if can? :edit, comment
-								= link_to "edit", edit_post_comment_path(@post,comment)
-							-if can? :destroy, comment
-								= link_to "destroy", post_comment_path(@post,comment), :confirm => 'Are you sure?', :method => :delete
-				%p= simple_format comment.content
+  .span10
+    .row
+      .span1
+        = gravatar_for(comment.user)
+        
+      .span9
+        .comment_header
+          %strong
+            =link_to("#{comment.user.name.humanize}", user_path(comment.user)) + ", "
+          %span.quiet= "#{time_ago_in_words comment.created_at} ago"
+          -if (can? :edit, comment) || (can? :destroy, comment)
+            %span.quiet.edit_links
+              -if can? :edit, comment
+                = link_to "edit", edit_post_comment_path(@post,comment)
+              -if can? :destroy, comment
+                = link_to "destroy", post_comment_path(@post,comment), :confirm => 'Are you sure?', :method => :delete
+        %p= simple_format comment.content

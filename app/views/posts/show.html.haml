@@ -13,11 +13,11 @@
 	- unless @post.comments_disabled
 		.row
 			.span1
-				= gravatar_image_tag(current_user.email, :class => :gravatar, :gravatar => {:size => 50})
+				= gravatar_for(current_user)
 			.span9
 				%strong New Comment:
 				= render 'comments/form'
 - else
 	.row
-		.span9.offset1
-			= "Please #{link_to "sign in", sign_in_path} to comment".html_safe
+		.span9.offset1.prepend-top.append-bottom
+			= "You can #{link_to "sign in", new_from_github_sessions_path} using Github if you want to comment".html_safe

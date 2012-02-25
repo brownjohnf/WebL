@@ -1,5 +1,5 @@
 .span1
-	=gravatar_image_tag(post.user.email, :class => :gravatar, :gravatar => {:size => 50})
+	= gravatar_for(post.user)
 .span11
 	%h1= link_to post.title, post
 	%small

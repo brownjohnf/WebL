@@ -1,19 +1,16 @@
 Webl::Application.routes.draw do
 	
-	namespace :admin do
-		resources :users do
-			put 'ban', :on => :member
-		end
-		resources :posts, :only => [:index, :destroy]
-		resources :comments, :only => [:index, :edit, :update, :destroy]
-	end
 
 	root :to => 'posts#index'
 	match '/about' => 'static#about'
 	match '/signout' => 'sessions#destroy', :as => :sign_out
 	match '/signin' => 'sessions#new', :as => :sign_in
 
-	resources :sessions, 	:only => [:new, :create, :destroy]
+  match "/auth/:provider/callback" => "sessions#create_from_github"
+  match "/auth/failure" => "sessions#failure_from_github"
+	resources :sessions, 	:only => [:new, :create, :destroy] do
+	  get 'new_from_github', :on => :collection
+  end
 	resources :users, 		:only => [:show, :new, :create, :edit, :update] do
 		resources :posts, :only => :index
 	end
@@ -23,7 +20,13 @@ Webl::Application.routes.draw do
 	end
 	resources :tags, :only => [:index, :show]
 	
-
+	namespace :admin do
+		resources :users do
+			put 'ban', :on => :member
+		end
+		resources :posts, :only => [:index, :destroy]
+		resources :comments, :only => [:index, :edit, :update, :destroy]
+	end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

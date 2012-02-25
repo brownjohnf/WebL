@@ -1,7 +1,7 @@
 - title @user.name.humanize, false
 
 .row.prepend-top
-	.span2= gravatar_image_tag(@user.email, :class => :gravatar)
+	.span2= gravatar_for(@user)
 	.span8
 		%h1= @user.name.humanize
 		- if can? :edit, @user
