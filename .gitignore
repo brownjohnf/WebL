@@ -5,6 +5,7 @@ tmp/
 *~
 webrat.log
 config/deploy.rb
+config/app_config.yml
 Capfile
 .rspec
 .autotest
