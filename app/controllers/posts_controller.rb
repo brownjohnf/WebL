@@ -2,6 +2,8 @@ class PostsController < ApplicationController
 	before_filter :new_post, :only => [:new, :create]
 	load_and_authorize_resource
 
+  cache_sweeper :post_sweeper
+
   def index
 		if params[:user_id]
 			@posts = Post.accessible_by(current_ability).where(:user_id => params[:user_id]).paginate(:page => params[:page])

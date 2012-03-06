@@ -4,7 +4,8 @@
 
   .row
     .span11.offset1
-      =markdown post.content
+      - cache("post_#{post.id}_full_body", :expires_in => 1.day) do
+        = markdown post.content
     
       - if can? :edit, post
         = link_to "Edit", edit_post_path(post)

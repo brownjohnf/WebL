@@ -1,17 +1,19 @@
 - title "Posts", false
 
 - @posts.each do |post|
-	.post
-		.row
-			= render :partial => 'post_header', :locals => {:post => post}
+  .post
+    .row
+      = render :partial => 'post_header', :locals => {:post => post}
 
-		.row
-			.span11.offset1
-				= markdown(truncate(post.content, :length => 1000, :separator => ' ')).html_safe
-				= link_to("Read more", post)
-				= " (#{post.comments.size} comments)"
+    .row
+      .span11.offset1
+        - cache("post_#{post.id}_short_body", :expires_in => 1.hour) do
+          = markdown(truncate(post.content, :length => 1000, :separator => ' ')).html_safe
+        = link_to("Read more", post)
+        = " (#{post.comments.size} comments)"
 
-=will_paginate @posts
+= will_paginate @posts
 
-=content_for(:sidebar) do
-	= render :partial => 'layouts/taglist'
+- content_for(:sidebar) do
+  - cache('taglist', :expires_in => 1.hour) do
+    = render :partial => 'layouts/taglist'
