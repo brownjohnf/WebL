@@ -1,8 +1,6 @@
 -title "Posts tagged #{@tag.name}"
 	
-- for post in @posts
-	.post
-		= render post
+= render @posts
 
 - if @posts.empty?
 	.alert-message.block-message.error

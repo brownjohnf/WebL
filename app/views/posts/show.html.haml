@@ -1,12 +1,11 @@
 - title @post.title, false
 
-.post= render @post, :locals => {:post => @post}
+= render @post
 
 - if can? :read, Comment
 	- unless @post.comments.empty?
 		%h1 Comments:
-		- for comment in @comments do
-			=render comment
+		=render @comments
 		=will_paginate @comments
 
 - if can? :create, Comment

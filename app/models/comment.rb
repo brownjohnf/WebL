@@ -8,7 +8,7 @@ class Comment < ActiveRecord::Base
 	validates :user_id, :post_id, :presence => true
 	validate :user_id_should_be_valid, :post_id_should_be_valid
 
-	belongs_to :post
+	belongs_to :post, :counter_cache => true
 	belongs_to :user
 	
 	private 

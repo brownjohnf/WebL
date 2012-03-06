@@ -18,7 +18,7 @@
 			=f.label :roles
 			.input
 				%ul.inputs-list
-					- for role in User::ROLES
+					- User::ROLES.each do |role|
 						%li
 							%label
 								= check_box_tag "user[roles][]", role, @user.roles.include?(role)

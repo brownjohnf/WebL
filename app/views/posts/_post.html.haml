@@ -1,12 +1,12 @@
--# Contained in a span12
-.row
-	= render :partial => 'posts/post_header', :locals => {:post => post}
+.post
+  .row
+    = render :partial => 'posts/post_header', :locals => {:post => post}
 
-.row
-	.span11.offset1
-		=markdown post.content
-		
-		- if can? :edit, post
-			= link_to "Edit", edit_post_path(post)
-			|
-		= link_to "Back to index", posts_path
+  .row
+    .span11.offset1
+      =markdown post.content
+    
+      - if can? :edit, post
+        = link_to "Edit", edit_post_path(post)
+        |
+      = link_to "Back to index", posts_path

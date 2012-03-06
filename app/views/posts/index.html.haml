@@ -1,6 +1,6 @@
 - title "Posts", false
 
-- for post in @posts
+- @posts.each do |post|
 	.post
 		.row
 			= render :partial => 'post_header', :locals => {:post => post}
@@ -9,7 +9,7 @@
 			.span11.offset1
 				= markdown(truncate(post.content, :length => 1000, :separator => ' ')).html_safe
 				= link_to("Read more", post)
-				= " (#{post.comments.count} comments)"
+				= " (#{post.comments.size} comments)"
 
 =will_paginate @posts
 
