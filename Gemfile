@@ -16,7 +16,7 @@ gem 'coderay'
 
 group :production do
 	gem 'therubyracer'
-	gem 'mysql2'
+	gem 'pg'
 end
 
 group :assets do
