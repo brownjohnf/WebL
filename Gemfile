@@ -44,7 +44,6 @@ group :development do
 	gem 'spork', '~> 0.9.0.rc'
 	gem 'autotest'
 	gem 'autotest-rails-pure'
-	gem 'autotest-fsevent'
 	gem 'autotest-growl'	
 	gem 'pry'
 end
